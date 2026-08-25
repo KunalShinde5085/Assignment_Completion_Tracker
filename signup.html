@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create account — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <h1>Create your account</h1>
+      <div class="sub">Your academic details get confirmed after your first login.</div>
+      <form id="signup-form">
+        <div class="field">
+          <label for="full_name">Full name</label>
+          <input id="full_name" type="text" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" required minlength="8" autocomplete="new-password" />
+        </div>
+        <div style="margin-top:20px;">
+          <button type="submit" id="submit-btn" style="width:100%;">Create account</button>
+        </div>
+      </form>
+      <div class="switch">Already have an account? <a href="login.html">Sign in</a></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { signUp } from './js/services/authService.js';
+    import { showToast } from './js/utils/dom.js';
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true; btn.textContent = 'Creating…';
+      try {
+        await signUp({
+          email: document.getElementById('email').value.trim(),
+          password: document.getElementById('password').value,
+          fullName: document.getElementById('full_name').value.trim(),
+        });
+        showToast('Account created — check your email to confirm, then sign in.', 'success');
+        setTimeout(() => { window.location.href = 'login.html'; }, 1800);
+      } catch (err) {
+        showToast(err.message || 'Could not create account.', 'error');
+        btn.disabled = false; btn.textContent = 'Create account';
+      }
+    });
+  </script>
+</body>
+</html>

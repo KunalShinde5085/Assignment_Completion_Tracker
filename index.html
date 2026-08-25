@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AcademicFlow</title>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script type="module">
+  import { supabase } from './js/supabaseClient.js';
+  const { data: { session } } = await supabase.auth.getSession();
+  window.location.replace(session ? 'dashboard.html' : 'login.html');
+</script>
+</head>
+<body></body>
+</html>

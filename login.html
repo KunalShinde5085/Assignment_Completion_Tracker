@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign in — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <h1>Welcome back</h1>
+      <div class="sub">Sign in to see what's left to do.</div>
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" required autocomplete="current-password" />
+        </div>
+        <div style="margin-top:20px; display:flex; gap:10px;">
+          <button type="submit" id="submit-btn" style="flex:1;">Sign in</button>
+        </div>
+      </form>
+      <div class="switch">
+        <a href="forgot-password.html">Forgot password?</a> ·
+        <a href="signup.html">Create account</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { signIn, bootstrapSession } from './js/services/authService.js';
+    import { showToast } from './js/utils/dom.js';
+
+    const form = document.getElementById('login-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true; btn.textContent = 'Signing in…';
+      try {
+        await signIn({
+          email: document.getElementById('email').value.trim(),
+          password: document.getElementById('password').value,
+        });
+        await bootstrapSession();
+        window.location.href = 'dashboard.html';
+      } catch (err) {
+        showToast(err.message || 'Could not sign in.', 'error');
+        btn.disabled = false; btn.textContent = 'Sign in';
+      }
+    });
+  </script>
+</body>
+</html>

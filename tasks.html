@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Work — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main">
+      <div class="topbar">
+        <h1>My Work</h1>
+        <button id="add-personal-btn" class="secondary">+ Personal task</button>
+      </div>
+
+      <div class="tag-row" id="filter-row">
+        <button class="tag-filter active" data-filter="remaining">Remaining</button>
+        <button class="tag-filter" data-filter="overdue">Overdue</button>
+        <button class="tag-filter" data-filter="week">This week</button>
+        <button class="tag-filter" data-filter="completed">Completed</button>
+        <button class="tag-filter" data-filter="personal">Personal</button>
+      </div>
+
+      <div class="card" id="add-personal-card" style="display:none;">
+        <h3 style="margin-top:0;">New personal task</h3>
+        <form id="personal-form">
+          <label for="p-title">Title</label>
+          <input id="p-title" required />
+          <label for="p-deadline">Deadline</label>
+          <input id="p-deadline" type="datetime-local" />
+          <div style="margin-top:14px; display:flex; gap:10px;">
+            <button type="submit">Add task</button>
+            <button type="button" class="secondary" id="cancel-personal">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="task-list" id="task-list">
+        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/pages/tasks.js"></script>
+</body>
+</html>

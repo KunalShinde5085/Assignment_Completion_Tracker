@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main">
+      <div class="topbar"><h1>Admin</h1></div>
+
+      <div class="tag-row" id="tab-row">
+        <button class="tag-filter active" data-tab="tasks">New task</button>
+        <button class="tag-filter" data-tab="proposals">Proposals</button>
+        <button class="tag-filter" data-tab="reports">Reports</button>
+        <button class="tag-filter" data-tab="changes">Change requests</button>
+        <button class="tag-filter" data-tab="users">Users</button>
+        <button class="tag-filter" data-tab="analytics">Analytics</button>
+      </div>
+
+      <section id="tab-tasks" class="tab-panel">
+        <div class="card">
+          <h3 style="margin-top:0;">Publish a shared task</h3>
+          <form id="task-form">
+            <label for="t-subject">Subject</label>
+            <select id="t-subject"></select>
+            <label for="t-activity">Activity</label>
+            <select id="t-activity"></select>
+            <label for="t-title">Task title</label>
+            <input id="t-title" required placeholder="e.g. Write-up" />
+            <label for="t-deadline">Deadline</label>
+            <input id="t-deadline" type="datetime-local" />
+            <label for="t-scope-type">Scope</label>
+            <select id="t-scope-type">
+              <option value="institution">Entire institution</option>
+              <option value="division" selected>Specific division</option>
+            </select>
+            <div id="dup-warning" class="meta" style="color:var(--warning); display:none; margin-top:8px;"></div>
+            <div style="margin-top:14px;">
+              <button type="button" id="check-dup-btn" class="secondary">Check duplicates</button>
+              <button type="submit">Publish task</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="tab-proposals" class="tab-panel" style="display:none;">
+        <div class="card" id="proposals-list"></div>
+      </section>
+
+      <section id="tab-reports" class="tab-panel" style="display:none;">
+        <div class="card" id="reports-list"></div>
+      </section>
+
+      <section id="tab-changes" class="tab-panel" style="display:none;">
+        <div class="card" id="changes-list"></div>
+      </section>
+
+      <section id="tab-users" class="tab-panel" style="display:none;">
+        <div class="card" id="users-list"></div>
+      </section>
+
+      <section id="tab-analytics" class="tab-panel" style="display:none;">
+        <div class="card" id="analytics-panel"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/pages/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profile — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main">
+      <div class="topbar"><h1>Profile</h1></div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Personal information</h3>
+        <form id="profile-form">
+          <label for="full_name">Name</label>
+          <input id="full_name" />
+          <label for="phone">Phone</label>
+          <input id="phone" />
+          <label for="bio">Bio</label>
+          <textarea id="bio" rows="3"></textarea>
+          <div style="margin-top:14px;">
+            <button type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Academic information</h3>
+        <div id="academic-info" class="meta"></div>
+        <p class="meta" style="margin-top:10px;">
+          These fields are managed by your institution. Need a correction?
+        </p>
+        <button type="button" class="secondary" id="request-change-btn">Request a change</button>
+
+        <form id="change-request-form" style="display:none; margin-top:14px;">
+          <label for="cr-field">Field</label>
+          <select id="cr-field">
+            <option value="division_id">Division</option>
+            <option value="program_id">Program</option>
+            <option value="semester_id">Semester</option>
+            <option value="roll_number">Roll number</option>
+            <option value="student_id">Student ID</option>
+          </select>
+          <label for="cr-value">Requested value</label>
+          <input id="cr-value" required placeholder="New value or ID" />
+          <label for="cr-reason">Reason</label>
+          <textarea id="cr-reason" rows="2"></textarea>
+          <div style="margin-top:12px;">
+            <button type="submit">Submit request</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Security</h3>
+        <a href="forgot-password.html" class="btn secondary" style="display:inline-block;">Change password</a>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/pages/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — AcademicFlow</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" id="sidebar"></nav>
+    <main class="main">
+      <div class="topbar">
+        <h1 id="greeting">Dashboard</h1>
+      </div>
+
+      <div class="stat-grid" id="stat-grid">
+        <div class="stat-card"><div class="value">—</div><div class="label">Total tasks</div></div>
+        <div class="stat-card"><div class="value">—</div><div class="label">Completed</div></div>
+        <div class="stat-card"><div class="value">—</div><div class="label">Remaining</div></div>
+        <div class="stat-card"><div class="value">—</div><div class="label">Overdue</div></div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Urgent</h3>
+        <div class="task-list" id="urgent-list">
+          <div class="skeleton"></div><div class="skeleton"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>
